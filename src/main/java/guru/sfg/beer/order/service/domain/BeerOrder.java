@@ -28,7 +28,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.sql.Timestamp;
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -42,7 +42,7 @@ public class BeerOrder extends BaseEntity {
 
     @Builder
     public BeerOrder(UUID id, Long version, Timestamp createdDate, Timestamp lastModifiedDate, String customerRef, Customer customer,
-                     Set<BeerOrderLine> beerOrderLines, OrderStatusEnum orderStatus,
+                     List<BeerOrderLine> beerOrderLines, OrderStatusEnum orderStatus,
                      String orderStatusCallbackUrl) {
         super(id, version, createdDate, lastModifiedDate);
         this.customerRef = customerRef;
@@ -59,7 +59,7 @@ public class BeerOrder extends BaseEntity {
 
     @OneToMany(mappedBy = "beerOrder", cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
-    private Set<BeerOrderLine> beerOrderLines;
+    private List<BeerOrderLine> beerOrderLines;
 
     private OrderStatusEnum orderStatus = OrderStatusEnum.NEW;
     private String orderStatusCallbackUrl;

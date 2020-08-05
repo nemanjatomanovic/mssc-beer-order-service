@@ -11,10 +11,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -54,7 +51,7 @@ public class TastingRoomService {
 
         BeerOrderLineDto beerOrderLine = BeerOrderLineDto.builder()
                 .upc(beerToOrder)
-                .orderQuantity(new Random().nextInt(6)) //todo externalize value to property
+                .orderQuantity(new Random().nextInt(6)) //todo externalize value to property and make it non zero value
                 .build();
 
         List<BeerOrderLineDto> beerOrderLineSet = new ArrayList<>();
